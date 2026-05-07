@@ -60,7 +60,7 @@ class ItemsController < ApplicationController
   end
 
   def item_params
-    params.require(:item).permit(:name, :quantity, :unit_price_cents, :vat_rate)
+    params.require(:item).permit(:name, :quantity, :unit_price, :vat_rate)
   end
 
   def prepare_quote_rendering

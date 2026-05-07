@@ -11,7 +11,7 @@ class ItemsControllerTest < ActionDispatch::IntegrationTest
         item: {
           name: "Design",
           quantity: 2,
-          unit_price_cents: 10_000,
+          unit_price: 100,
           vat_rate: 20
         }
       }
@@ -28,7 +28,7 @@ class ItemsControllerTest < ActionDispatch::IntegrationTest
         item: {
           name: "Design",
           quantity: 2,
-          unit_price_cents: 10_000,
+          unit_price: 100,
           vat_rate: 20
         }
       }
@@ -44,7 +44,7 @@ class ItemsControllerTest < ActionDispatch::IntegrationTest
       item: {
         name: "Development",
         quantity: 3,
-        unit_price_cents: 15_000,
+        unit_price: 150,
         vat_rate: 10
       }
     }
@@ -64,7 +64,7 @@ class ItemsControllerTest < ActionDispatch::IntegrationTest
       item: {
         name: "Development",
         quantity: 3,
-        unit_price_cents: 15_000,
+        unit_price: 150,
         vat_rate: 10
       }
     }

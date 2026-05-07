@@ -6,9 +6,16 @@ class ItemTest < ActiveSupport::TestCase
   end
 
   test "is valid with valid attributes" do
-    item = @quote.items.build(name: "Design", quantity: 2, unit_price_cents: 10_000, vat_rate: 20)
+    item = @quote.items.build(name: "Design", quantity: 2, unit_price: 100, vat_rate: 20)
 
     assert item.valid?
+  end
+
+  test "converts unit price to cents" do
+    item = @quote.items.build(name: "Design", quantity: 2, unit_price: "123.45", vat_rate: 20)
+
+    assert_equal 12_345, item.unit_price_cents
+    assert_equal "123.45".to_d, item.unit_price
   end
 
   test "requires a name" do
@@ -29,7 +36,7 @@ class ItemTest < ActiveSupport::TestCase
     item = @quote.items.build(name: "Design", quantity: 2, unit_price_cents: -1, vat_rate: 20)
 
     assert_not item.valid?
-    assert_includes item.errors[:unit_price_cents], "must be greater than or equal to 0"
+    assert_includes item.errors[:unit_price], "must be greater than or equal to 0"
   end
 
   test "requires a vat rate between 0 and 100" do

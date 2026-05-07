@@ -9,15 +9,16 @@ export default class extends Controller {
 
   recalculate() {
     const quantity = Number(this.quantityTarget.value)
-    const unitPriceCents = Number(this.unitPriceTarget.value)
+    const unitPrice = Number(this.unitPriceTarget.value)
     const vatRate = Number(this.vatRateTarget.value)
 
-    if (!quantity || Number.isNaN(unitPriceCents) || Number.isNaN(vatRate)) {
+    if (!quantity || Number.isNaN(unitPrice) || Number.isNaN(vatRate)) {
       this.subtotalTarget.textContent = "Total HT"
       this.totalTarget.textContent = "Total TTC"
       return
     }
 
+    const unitPriceCents = Math.round(unitPrice * 100)
     const subtotalCents = quantity * unitPriceCents
     const totalCents = Math.round(subtotalCents + (subtotalCents * vatRate) / 100)
 
